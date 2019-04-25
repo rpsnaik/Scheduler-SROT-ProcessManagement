@@ -64,7 +64,7 @@ int main(){
     printf("*************      Low Priority Queue       **************\n");
     printf("ProcessID ---- Arrival Time ----- Brust Time ----- Priority \n");
     for(l = 0; l < lQueueSize; l++){
-        printf("       L%d",l+1);
+        printf("    L%d",l+1);
     	printf("           %d             %d                 %c \n",a[lQueue[l]], b[lQueue[l]], c[lQueue[l]]);
 	}
 
@@ -72,7 +72,7 @@ int main(){
     printf("*************      High Priority Queue       **************\n");
     printf("ProcessID ---- Arrival Time ----- Brust Time ----- Priority \n");
     for(m = 0; m < hQueueSize; m++){
-        printf("       H%d",m+1);
+        printf("    H%d",m+1);
     	printf("           %d             %d                 %c \n",a[hQueue[m]], b[hQueue[m]], c[hQueue[m]]);
 	}
     printf("\n \n \n");
@@ -84,7 +84,7 @@ int main(){
     if((hQueueSize > 0) && (lQueueSize > 0)){
         //Here Comes the Timer
         printf("Process Starts Here : \n \n");
-        printf("Process ID ----- Arrival Time ----- Brust Time ----- Priority \n");
+        printf("      Arrival Time ----- Brust Time ----- Priority ----- Waiting Time -----  TurnAroundTime\n");
         int empty = lQueueSize + hQueueSize;
         int time = 0;
         printf("\n");
@@ -105,7 +105,10 @@ int main(){
                         }
                     }
                 }
-                printf("   %d      %d     %c \n", a[hQueue[indexofPid]], b[hQueue[indexofPid]], c[hQueue[indexofPid]]);
+                if(b[hQueue[indexofPid]] <= 2){
+                    printf("           %d                 %d              %c               %d               %d    \n", a[hQueue[indexofPid]], b[hQueue[indexofPid]], c[hQueue[indexofPid]], time-a[hQueue[indexofPid]], time-a[hQueue[indexofPid]]);
+                }
+                    printf("           %d                 %d              %c               %d               (Not Yet Completed)    \n", a[hQueue[indexofPid]], b[hQueue[indexofPid]], c[hQueue[indexofPid]], time-a[hQueue[indexofPid]]);
                 if(b[hQueue[indexofPid]] > 2){
                     b[hQueue[indexofPid]] = b[hQueue[indexofPid]] - 2;
                 }else{
@@ -140,7 +143,11 @@ int main(){
                         }
                     }
                 }
-                printf("    %d      %d     %c \n", a[lQueue[indexofPid]], b[lQueue[indexofPid]], c[lQueue[indexofPid]]);
+                // printf("    %d      %d     %c \n", a[lQueue[indexofPid]], b[lQueue[indexofPid]], c[lQueue[indexofPid]]);
+                if(b[hQueue[indexofPid]] <= 2){
+                    printf("           %d                 %d              %c               %d               %d    \n", a[lQueue[indexofPid]], b[lQueue[indexofPid]], c[lQueue[indexofPid]], time-a[lQueue[indexofPid]]);
+                }
+                    printf("           %d                 %d              %c               %d               (Not Yet Completed)    \n", a[lQueue[indexofPid]], b[lQueue[indexofPid]], c[lQueue[indexofPid]], time-a[lQueue[indexofPid]]);
                 if(b[lQueue[indexofPid]] > 2){
                     b[lQueue[indexofPid]] = b[lQueue[indexofPid]] - 2;
                 }else{
